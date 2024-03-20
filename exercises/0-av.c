@@ -12,6 +12,5 @@ int main(int argc, char **argv)
 		printf("%s\n",  *argv);
 		argv++;
 	}
-	printf("%u\n", argc);
 	return (0);
 }
