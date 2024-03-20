@@ -6,6 +6,7 @@
 int main ()
 {
     int i = 0;
+    char **array;
     char *buffer;
     char *portion;
     char delimiter[] = " ";
@@ -23,7 +24,7 @@ int main ()
 
     while (portion != NULL)
     {
-        i++
+        i++;
         portion = strtok(NULL, delimiter);
         array[i] = strdup(portion);
         printf("%s\n", portion);
