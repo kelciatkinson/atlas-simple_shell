@@ -5,7 +5,8 @@
 
 /**
  * main - stat example
- *
+ * @ac: arg count
+ * @av: argv pointer to an array of pointers to strings
  * Return: Always 0.
  */
 int main(int ac, char **av)
