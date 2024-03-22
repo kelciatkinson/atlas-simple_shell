@@ -3,7 +3,7 @@
 
 /**
  * main - fork example
- *
+ * @new:  new process to fork
  * Return: Always 0.
  */
 int _fork(char *new_)
