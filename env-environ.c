@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-extern char **environ;
+extern char **env;
 
 char **add_env(const char *key_value)
 {
@@ -9,7 +9,7 @@ char **add_env(const char *key_value)
   int n = 0;
   char **new_env;
 
-  while (environ[i])
+  while (env[i])
     i++;
 
  new_env = (char **)malloc((i + 2) * sizeof(char *));
