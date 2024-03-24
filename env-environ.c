@@ -19,5 +19,5 @@ char **add_env(const char *key_value)
     perror("Memory allocation failed");
     exit(EXIT_FAILURE);
   }
-  
+  return(new_env);
 }
