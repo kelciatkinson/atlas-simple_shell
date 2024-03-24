@@ -5,14 +5,14 @@ extern char **env;
 
 char **add_env(const char *key_value)
 {
+  int count = 0;
   int i = 0;
-  int n = 0;
   char **new_env;
 
-  while (env[i])
-    i++;
+  while (env[count])
+    count++;
 
- new_env = (char **)malloc((i + 2) * sizeof(char *));
+ new_env = (char **)malloc((count + 2) * sizeof(char *));
 
   if (new_env == NULL)
   {
