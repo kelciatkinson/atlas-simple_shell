@@ -12,7 +12,7 @@ char **add_env(const char *key_value)
   while (environ[i])
     i++;
 
- **new_env = (char **)malloc((i + 2) * sizeof(char *));
+ new_env = (char **)malloc((i + 2) * sizeof(char *));
 
   if (new_env == NULL)
   {
