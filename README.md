@@ -1,6 +1,6 @@
 # This is a UNIX command line interpreter.
 
-- Usage: `simple_shell`
+- Usage: `shell`
 
 ## This shell will:
 
