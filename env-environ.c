@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 char **get_env(const char *key_value)
 {
   size_t len = 0;
