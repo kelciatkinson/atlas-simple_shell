@@ -2,21 +2,22 @@
 #include <stdlib.h>
 
 
-char **add_env(const char *key_value)
+char **get_env(const char *key_value)
 {
-  int count = 0;
+  size_t len = 0;
   int i = 0;
   char **new_env;
 
-  while (env[count])
-    count++;
+  len = strlen(key_value);
 
- new_env = (char **)malloc((count + 2) * sizeof(char *));
-
-  if (new_env == NULL)
+  while (env[i])
   {
-    perror("Memory allocation failed");
-    exit(EXIT_FAILURE);
+	if (strncmp(name, env[i], len) == 0)
+	{
+		if (env[i][len] == '=')
+			return (env[i] + len + 1);
+		i++;
+	}
   }
-  return(new_env);
+	return (NULL);
 }
