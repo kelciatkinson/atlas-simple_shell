@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-extern char **env;
 
 char **add_env(const char *key_value)
 {
