@@ -11,6 +11,6 @@
 char **get_env(const char *key_value);
 int mainmain(void);
 int main(int argc, char **argv, char **env);
-
+char **tokenize(char *);
 
 #endif
