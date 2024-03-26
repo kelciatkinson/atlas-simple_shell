@@ -4,7 +4,7 @@
 #include <unistd.h>
 
 /**
- * main - stat example
+ * __main - stat example
  * @ac: arg count
  * @av: argv pointer to an array of pointers to strings
  * Return: Always 0.
