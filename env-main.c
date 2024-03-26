@@ -1,57 +1,23 @@
 #include "shell.h"
 
 /**
- * Write a UNIX command line interpreter.
+ * main - main entry point for shell
  *
- * Usage: simple_shell
- * Your Shell should:
+ * @argc: the count of arguments
+ * @argv: the arguments
+ * @env:  the environment things
  *
- *  * Display a prompt and wait for the user to type a command. A command line
- *    always ends with a new line.
- *  * The prompt is displayed again each time a command has been executed.
- *  * The command lines are simple, no semicolons, no pipes, no redirections or
- *  * any other advanced features.
- *  * The command lines are made only of one word. No arguments will be passed
- *  * to programs.
- *  * If an executable cannot be found, print an error message and display the
- *  * prompt again.
- *  * Handle errors.
- *  * You have to handle the “end of file” condition (Ctrl+D)
+ * Return: 0 success -1 error
  *
- * You don’t have to:
- *
- *  * use the PATH
- *  * implement built-ins
- *  * handle special characters : ", ', `, \, *, &, #
- *  * be able to move the cursor
- *  * handle commands with arguments
- *  * execve will be the core part of your Shell, don’t forget to pass the
- *    environ to it…
- * 
- * julien@ubuntu:~/shell$ ./shell 
- * #cisfun$ ls
- * ./shell: No such file or directory
- * #cisfun$ /bin/ls
- * barbie_j       env-main.c  exec.c  fork.c  pid.c  ppid.c    prompt   prompt.c  shell.c  stat.c         wait
- * env-environ.c  exec    fork    mypid   ppid   printenv  promptc  shell     stat test_scripting.sh  wait.c
- * #cisfun$ ^[[D^[[D^[[D
- * ./shell: No such file or directory
- * #cisfun$ ^[[C^[[C^[[C^[[C
- * ./shell: No such file or directory
- * #cisfun$ exit
- * ./shell: No such file or directory
- * #cisfun$ ^C
- * julien@ubuntu:~/shell$ echo "/bin/ls" | ./shell
- * barbie_j       env-main.c  exec.c  fork.c  pid.c  ppid.c    prompt   prompt.c  shell.c  stat.c         wait
- * env-environ.c  exec    fork    mypid   ppid   printenv  promptc  shell     stat test_scripting.sh  wait.c
- * julien@ubuntu:~/shell$
- */
+*/
 
 int main(int argc, char **argv, char **env)
 {
 	char *buffer;
 	size_t buffersize = 4096;
 	int fork_result;
+	char **tokens;
+	int i = 0;
 
 	buffer = malloc(sizeof(char) * buffersize);
 	if (buffer == NULL)
@@ -68,29 +34,67 @@ int main(int argc, char **argv, char **env)
 			return (-1);
 		if (fork_result == 0)
 		{
-			tokenize(buffer);
-			printf("child process\n");
+			tokens = tokenize(buffer);
+			if (execve(tokens[0], tokens, env) == -1)
+				fprintf(stderr, "%s: No such file or directory\n", argv[0]);
+
 			return (0);
 		}
 		wait(NULL);
-		printf("return to main.\n");
 	}
 
 	free(buffer);
+	while (tokens[i])
+		free(tokens[i++]);
+
+	free(tokens);
+
 	return (0);
 }
 
+/**
+ * tokenize- make a string into tokens
+ *
+ * @str:     the string to tokenize
+ *
+ * Return:   an array of pointes to strings
+ *
+ */
+
 char **tokenize(char *str)
 {
-	char *part;
-	int i;
+	char *part = NULL;
+	char **result;
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	char d[] = " \n";
+	char *delim;
+
+	delim = d;
 
 	while (*str)
 	{
 		if (*str == ' ')
 			i++;
 		str++;
+		k++;
 	}
 	i++;
-	/* i contains the number of words. TODO: malloc the array*/
+
+	str -= k;
+
+	result = malloc(sizeof(char *) * (++i));
+	if (result == NULL)
+		return (NULL);
+
+	part = strtok(str, delim);
+	while (part)
+	{
+		result[j++] = strdup(part);
+		part = strtok(NULL, delim);
+	}
+	result[j] = NULL;
+
+	return (result);
 }
