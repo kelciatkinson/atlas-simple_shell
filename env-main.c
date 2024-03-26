@@ -19,6 +19,8 @@ int main(int argc, char **argv, char **env)
 	char **tokens = NULL;
 	int i = 0;
 
+	argc = argc;
+	
 	buffer = malloc(sizeof(char) * buffersize);
 	if (buffer == NULL)
 		return (-1);

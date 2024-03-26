@@ -2,19 +2,22 @@
 #include <unistd.h>
 
 /**
- * main - execve example
+ * _execve -  Execute a process
  *
- * Return: Always 0.
+ * @execfile: The full path and filename to execute.
+ *
+ * Return:    0 success, -1 error
  */
-int main(void)
-{
-    char *argv[] = {"/bin/ls", "-l", "/usr/", NULL};
 
-    printf("Before execve\n");
-    if (execve(argv[0], argv, NULL) == -1)
-    {
-        perror("Error:");
-    }
-    printf("After execve\n");
-    return (0);
+int _execve(char *execfile)
+{
+	char *argv[] = {*execfile, NULL};
+
+	if (execve(*execfile, *execfile, NULL) == -1)
+	{
+		perror("Error:");
+		return (-1);
+	}
+
+	return (0);
 }
