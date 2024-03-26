@@ -1,5 +1,7 @@
 #include "shell.h"
 
+extern char **env;
+
 char **get_env(const char *key_value)
 {
   size_t len = 0;
