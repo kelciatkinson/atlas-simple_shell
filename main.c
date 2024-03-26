@@ -8,7 +8,7 @@
  * Return: here is a return value
  */
 
- int main(void)
+ int _main(void)
  {
 	char *buffer;
 	size_t buffsize = 4095;

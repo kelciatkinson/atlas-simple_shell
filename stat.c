@@ -9,7 +9,7 @@
  * @av: argv pointer to an array of pointers to strings
  * Return: Always 0.
  */
-int main(int ac, char **av)
+int __main(int ac, char **av)
 {
     unsigned int i;
     struct stat st;

@@ -8,7 +8,7 @@
  *
  * Return: Always 0.
  */
-int mainmain(void)
+int ___mainmain(void)
 {
     pid_t child_pid;
     int status;
