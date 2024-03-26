@@ -11,7 +11,7 @@ extern char **env;
 
  /** prototypes */
 char **get_env(const char *key_value);
-int main();
+int main(void);
 
 
 #endif
