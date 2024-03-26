@@ -31,6 +31,7 @@ int main(int argc, char **argv, char **env)
 		getline(&buffer, &buffersize, stdin);
 		if (strncmp(buffer, "exit", 4) == 0)
 			break;
+
 		fork_result = fork();
 		if (fork_result == -1)
 			return (-1);
@@ -46,10 +47,6 @@ int main(int argc, char **argv, char **env)
 	}
 
 	free(buffer);
-	while (tokens[i])
-		free(tokens[i++]);
-
-	free(tokens);
 
 	return (0);
 }
