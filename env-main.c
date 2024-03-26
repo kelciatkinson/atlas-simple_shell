@@ -17,7 +17,6 @@ int main(int argc, char **argv, char **env)
 	size_t buffersize = 4096;
 	int fork_result;
 	char **tokens = NULL;
-	int i = 0;
 
 	argc = argc;
 	
