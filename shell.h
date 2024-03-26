@@ -6,6 +6,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <string.h>
+#include <stddef.h>
 
  /** prototypes */
 char **get_env(const char *key_value);

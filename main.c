@@ -1,7 +1,7 @@
-#inlcude "shell.h"
+#include "shell.h"
 
 /**
- * main- here is a description
+ * _main- here is a description
  *
  * @parameter: here is a parameter
  *
