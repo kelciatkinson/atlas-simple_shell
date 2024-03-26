@@ -16,7 +16,7 @@ int main(int argc, char **argv, char **env)
 	char *buffer;
 	size_t buffersize = 4096;
 	int fork_result;
-	char **tokens;
+	char **tokens = NULL;
 	int i = 0;
 
 	buffer = malloc(sizeof(char) * buffersize);
