@@ -18,6 +18,7 @@ int main(int argc, char **argv, char **env)
 	size_t buffersize = 6235;
 	int fork_result, i = 0;
 	char **tokens = NULL;
+	int status = 0;
 
 	argc = argc;
 	buffer = malloc(sizeof(char) * buffersize);
@@ -31,7 +32,9 @@ int main(int argc, char **argv, char **env)
 			if (strncmp(buffer, "exit", 4) == 0)
 			{
 				free(buffer);
-				exit (2);
+				if (status == -1)
+					exit (2);
+				return (0);
 			}
 
 
@@ -46,7 +49,7 @@ int main(int argc, char **argv, char **env)
 				return (0);
 			}
 
-			wait(NULL);
+			wait(&status);
 		}
 	}
 
