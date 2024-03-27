@@ -14,5 +14,6 @@ int mainmain(void);
 int main(int argc, char **argv, char **env);
 char **tokenize(char *, char *);
 ssize_t prompt(char *, size_t *);
+int _isspace(char *str);
 
 #endif

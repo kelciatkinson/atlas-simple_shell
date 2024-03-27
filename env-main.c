@@ -26,26 +26,29 @@ int main(int argc, char **argv, char **env)
 
 	while (prompt(buffer, &buffersize) != -1)
 	{
-		if (strncmp(buffer, "exit", 4) == 0)
+		if (_isspace(buffer) != 1)
 		{
-			free(buffer);
-			return (0);
-		}
+			if (strncmp(buffer, "exit", 4) == 0)
+			{
+				free(buffer);
+				return (0);
+			}
 
-		fork_result = fork();
-		if (fork_result == -1)
-			return (-1);
-		if (fork_result == 0)
-		{
-			tokens = tokenize(buffer, " \n");
-			if (execve(tokens[i], tokens, env) == -1)
-				fprintf(stderr, "%s: No such file or directory\n", argv[0]);
-			return (0);
+			fork_result = fork();
+			if (fork_result == -1)
+				return (-1);
+			if (fork_result == 0)
+			{
+				tokens = tokenize(buffer, " \n");
+				if (execve(tokens[i], tokens, env) == -1)
+					fprintf(stderr, "%s: No such file or directory\n", argv[0]);
+				return (0);
+			}
+			wait(NULL);
 		}
-		wait(NULL);
 	}
-	
-	free (buffer);
+
+	free(buffer);
 	return (0);
 }
 
@@ -108,4 +111,23 @@ ssize_t prompt(char *buffer, size_t *buffersize)
 	if (isatty(STDIN_FILENO))
 		printf("#cisfun$ ");
 	return (getline(&buffer, buffersize, stdin));
+}
+
+/**
+ * _isspace- find out if a string is all spaces.
+ *
+ * @str:    the string to check
+ *
+ * Return:  1 if all spaces, 0 not all spaces
+ */
+
+int _isspace(char *str)
+{
+	while (*str)
+	{
+		if (*str != ' ' && *str != '\n' && *str != '\t')
+			return (0);
+		str++;
+	}
+	return (1);
 }
