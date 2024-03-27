@@ -1,4 +1,5 @@
 #include "shell.h"
+void nothing(void);
 
 /**
  * main - main entry point for shell
@@ -15,42 +16,34 @@ int main(int argc, char **argv, char **env)
 {
 	char *buffer;
 	size_t buffersize = 4096;
-	int fork_result;
-	char **tokens = NULL;
+	int fork_result, i = 0;
+	char **tokens = NULL, **lines = NULL;
 
 	argc = argc;
-	
 	buffer = malloc(sizeof(char) * buffersize);
 	if (buffer == NULL)
 		return (-1);
 
-	while (1)
+	while (prompt(buffer, &buffersize) != -1)
 	{
-		if (isatty(STDIN_FILENO)) 
-			printf("#cisfun$ ");
-
-		getline(&buffer, &buffersize, stdin);
-
 		if (strncmp(buffer, "exit", 4) == 0)
-			break;
+		{
+			free(buffer);
+			return (0);
+		}
 
 		fork_result = fork();
 		if (fork_result == -1)
 			return (-1);
 		if (fork_result == 0)
 		{
-			tokens = tokenize(buffer);
-			if (execve(tokens[0], tokens, env) == -1)
+			tokens = tokenize(buffer, " \n");
+			if (execve(tokens[i], tokens, env) == -1)
 				fprintf(stderr, "%s: No such file or directory\n", argv[0]);
-
 			return (0);
 		}
 		wait(NULL);
-		if (!isatty(STDIN_FILENO))
-			break;
 	}
-
-	free(buffer);
 
 	return (0);
 }
@@ -59,26 +52,23 @@ int main(int argc, char **argv, char **env)
  * tokenize- make a string into tokens
  *
  * @str:     the string to tokenize
+ * @d:       deliminator
  *
  * Return:   an array of pointes to strings
  *
  */
 
-char **tokenize(char *str)
+char **tokenize(char *str, char *d)
 {
 	char *part = NULL;
 	char **result;
 	int i = 0;
 	int j = 0;
 	int k = 0;
-	char d[] = " \n";
-	char *delim;
-
-	delim = d;
 
 	while (*str)
 	{
-		if (*str == ' ')
+		if (*str == d[0])
 			i++;
 		str++;
 		k++;
@@ -91,13 +81,30 @@ char **tokenize(char *str)
 	if (result == NULL)
 		return (NULL);
 
-	part = strtok(str, delim);
+	part = strtok(str, d);
 	while (part)
 	{
 		result[j++] = strdup(part);
-		part = strtok(NULL, delim);
+		part = strtok(NULL, d);
 	}
 	result[j] = NULL;
 
 	return (result);
+}
+
+/**
+ * prompt-      print a prompt if running in interactive mode.
+ *              also, get a line and put it into the buffer.
+ *
+ * @buffer:     the buffer to put the line into from getline
+ * @buffersize: how big the buffer is
+ *
+ * Return:      the number of bytes read from getline
+ */
+
+ssize_t prompt(char *buffer, size_t *buffersize)
+{
+	if (isatty(STDIN_FILENO))
+		printf("#cisfun$ ");
+	return (getline(&buffer, buffersize, stdin));
 }

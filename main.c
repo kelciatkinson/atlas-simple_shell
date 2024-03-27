@@ -3,13 +3,11 @@
 /**
  * _main- here is a description
  *
- * @parameter: here is a parameter
- *
  * Return: here is a return value
  */
 
- int _main(void)
- {
+int _main(void)
+{
 	char *buffer;
 	size_t buffsize = 4095;
 
@@ -29,4 +27,4 @@
 	}
 	free(buffer);
 	return (0);
- }
+}
