@@ -44,7 +44,8 @@ int main(int argc, char **argv, char **env)
 		}
 		wait(NULL);
 	}
-
+	
+	free (buffer);
 	return (0);
 }
 
