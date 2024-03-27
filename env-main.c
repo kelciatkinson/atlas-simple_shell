@@ -49,7 +49,7 @@ int main(int argc, char **argv, char **env)
 				return (0);
 			}
 
-			status = wait(NULL);
+			wait(&status);
 		}
 	}
 
