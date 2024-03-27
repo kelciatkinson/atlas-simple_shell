@@ -34,7 +34,7 @@ int main(int argc, char **argv, char **env)
 				free(buffer);
 				if (status == -1)
 					exit (2);
-				return (0);
+				return (status);
 			}
 
 
