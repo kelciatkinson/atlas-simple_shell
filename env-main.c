@@ -15,7 +15,7 @@ void nothing(void);
 int main(int argc, char **argv, char **env)
 {
 	char *buffer;
-	size_t buffersize = 4096;
+	size_t buffersize = 6235;
 	int fork_result, i = 0;
 	char **tokens = NULL;
 
