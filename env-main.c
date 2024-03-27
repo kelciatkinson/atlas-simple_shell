@@ -31,8 +31,9 @@ int main(int argc, char **argv, char **env)
 			if (strncmp(buffer, "exit", 4) == 0)
 			{
 				free(buffer);
-				return (0);
+				exit (2);
 			}
+
 
 			fork_result = fork();
 			if (fork_result == -1)
@@ -44,6 +45,7 @@ int main(int argc, char **argv, char **env)
 					fprintf(stderr, "%s: No such file or directory\n", argv[0]);
 				return (0);
 			}
+
 			wait(NULL);
 		}
 	}
