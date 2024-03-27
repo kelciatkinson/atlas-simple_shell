@@ -2,22 +2,25 @@
 void nothing(void);
 
 /**
- * main - main entry point for shell
- *
- * @argc: the count of arguments
- * @argv: the arguments
- * @env:  the environment things
- *
- * Return: 0 success -1 error
- *
+* main - main entry point for shell
+*
+* @argc: the count of arguments
+* @argv: the arguments
+* @env:  the environment things
+*
+* Return: 0 success -1 error
+*
 */
 
 int main(int argc, char **argv, char **env)
 {
 	char *buffer;
+
 	size_t buffersize = 6235;
 	int fork_result, i = 0;
+
 	char **tokens = NULL;
+
 	int status = 0;
 
 	argc = argc;
@@ -58,21 +61,25 @@ int main(int argc, char **argv, char **env)
 }
 
 /**
- * tokenize- make a string into tokens
- *
- * @str:     the string to tokenize
- * @d:       deliminator
- *
- * Return:   an array of pointes to strings
- *
- */
+* tokenize- make a string into tokens
+*
+* @str:     the string to tokenize
+* @d:       deliminator
+*
+* Return:   an array of pointes to strings
+*
+*/
 
 char **tokenize(char *str, char *d)
 {
 	char *part = NULL;
+
 	char **result;
+
 	int i = 0;
+
 	int j = 0;
+
 	int k = 0;
 
 	while (*str)
@@ -102,14 +109,14 @@ char **tokenize(char *str, char *d)
 }
 
 /**
- * prompt-      print a prompt if running in interactive mode.
- *              also, get a line and put it into the buffer.
- *
- * @buffer:     the buffer to put the line into from getline
- * @buffersize: how big the buffer is
- *
- * Return:      the number of bytes read from getline
- */
+* prompt-      print a prompt if running in interactive mode.
+*              also, get a line and put it into the buffer.
+*
+* @buffer:     the buffer to put the line into from getline
+* @buffersize: how big the buffer is
+*
+* Return:      the number of bytes read from getline
+*/
 
 ssize_t prompt(char *buffer, size_t *buffersize)
 {
@@ -119,12 +126,12 @@ ssize_t prompt(char *buffer, size_t *buffersize)
 }
 
 /**
- * _isspace- find out if a string is all spaces.
- *
- * @str:    the string to check
- *
- * Return:  1 if all spaces, 0 not all spaces
- */
+* _isspace- find out if a string is all spaces.
+*
+* @str:    the string to check
+*
+* Return:  1 if all spaces, 0 not all spaces
+*/
 
 int _isspace(char *str)
 {
@@ -135,4 +142,20 @@ int _isspace(char *str)
 		str++;
 	}
 	return (1);
+}
+
+char *findpath(char *cmd, char *path)
+{
+	char **patharray;
+	int i = 0;
+
+	patharray = tokenize(path, ":/");
+
+	while (patharray[i])
+	{
+		if stat(file is okie dokie it returns 0 else it returns -1)
+		i++;
+	}
+	/*strcat(strcat())*/
+
 }
