@@ -26,8 +26,11 @@ int main(int argc, char **argv, char **env)
 
 	while (1)
 	{
-		printf("#cisfun$ ");
+		if (isatty(STDIN_FILENO)) 
+			printf("#cisfun$ ");
+
 		getline(&buffer, &buffersize, stdin);
+
 		if (strncmp(buffer, "exit", 4) == 0)
 			break;
 
@@ -43,6 +46,8 @@ int main(int argc, char **argv, char **env)
 			return (0);
 		}
 		wait(NULL);
+		if (!isatty(STDIN_FILENO))
+			break;
 	}
 
 	free(buffer);
