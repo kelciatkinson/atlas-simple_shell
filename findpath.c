@@ -1,8 +1,8 @@
 #include "shell.h"
 
 /**
- * findpath- figure out if a command can be executed where it's at or figure out
- *           if it is in the path somewhere
+ * findpath- figure out if a command can be executed where it's at or figure
+ *           out if it is in the path somewhere
  *
  * @cmd:     the command to look for
  * @env:     an environment to get the path from

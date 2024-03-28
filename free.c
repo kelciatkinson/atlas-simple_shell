@@ -1,15 +1,15 @@
 #include "shell.h"
 
 /**
- * free_double_pointer- 
+ * free_double_pointer- free the memory for a double char pointer
  *
- * @a:
+ * @a:                  the double pointer to free
  *
- * Return: 0 or 1
+ * Return:              0 or 1
  */
 
- int free_double_pointer(char **a)
- {
+int free_double_pointer(char **a)
+{
 	int i = 0;
 
 	if (!a)
@@ -17,9 +17,9 @@
 
 	while (a[i])
 	{
-		free (a[i]);
+		free(a[i]);
 		i++;
 	}
 	free(a);
 	return (1);
- }
+}
