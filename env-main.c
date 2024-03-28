@@ -30,6 +30,7 @@ int main(int argc, char **argv, char **env)
 
 	while (prompt(buffer, &buffersize) != -1)
 	{
+		printf("%s\n", buffer);
 		if (_isspace(buffer) != 1)
 		{
 			if (strncmp(buffer, "exit", 4) == 0)
@@ -39,10 +40,11 @@ int main(int argc, char **argv, char **env)
 					exit (2);
 				return (status);
 			}
-
+			printf("we made it to line 42 %s\n", buffer);
 			tokens = tokenize(buffer, " \n");
-
+			printf("We made it passed to line 44\n");
 			found = findpath(tokens[0], env);
+			printf("found is %s and we made it to line 46\n", found);
 			if (found == NULL)
 				fprintf(stderr, "%s: No such file or directory\n", argv[0]);
 			else
@@ -103,11 +105,13 @@ char **tokenize(char *str, char *d)
 		return (NULL);
 
 	part = strtok(str, d);
+	printf("this line 107 is not empty %s\n", part);
 	while (part)
 	{
 		result[j++] = strdup(part);
+		printf("this loop is part: %s and result: %s\n", part, result[j - 1]);
 		part = strtok(NULL, d);
-		printf("%s\n", part);
+		printf("wait a second, does this work?%s\n", part);
 	}
 	result[j] = NULL;
 
@@ -163,9 +167,9 @@ char *findpath(char *cmd, char **env)
 	{
 		return (NULL);
 	}
-	printf("Something find path L:165\n");
-	patharray = tokenize(get_env("PATH", env), ":/");
-	printf("it made it past patharry this is line 167\n");
+	printf("Something find path L:169\n");
+	patharray = tokenize(get_env("PATH", env), ":");
+	printf("it made it past patharry this is line 171\n");
 	str = malloc(strlen(patharray[i]) + 1 + strlen(cmd));
 
 	if (str == NULL)
@@ -180,9 +184,13 @@ char *findpath(char *cmd, char **env)
 		sprintf(str, "%s/%s", patharray[i], cmd);
 		printf("%s\n", str);
 		if (stat(str, buff) == 0)
+		{
+			free_double_pointer(patharray);
 			return (str);
+		}
 		i++;
 	}
+	free_double_pointer(patharray);
 	free(str);
 	return (NULL);
 }

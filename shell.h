@@ -18,5 +18,6 @@ char **tokenize(char *, char *);
 ssize_t prompt(char *, size_t *);
 int _isspace(char *str);
 char *findpath(char *cmd, char **env);
+int free_double_pointer(char **a);
 
 #endif
