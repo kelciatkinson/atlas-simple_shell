@@ -1,5 +1,15 @@
 #include "shell.h"
 
+/**
+ * get_env-    get an environment variable
+ *
+ * @key_value: the value to find
+ * @env:       the environment to search
+ *
+ * Return:     a char pointer to the value found at @key_value in @env
+ *
+ */
+
 char *get_env(const char *key_value, char **env)
 {
 	size_t len = 0;
