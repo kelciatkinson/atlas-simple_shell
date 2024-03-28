@@ -40,7 +40,6 @@ int main(int argc, char **argv, char **env)
 				return (status);
 			}
 
-
 			fork_result = fork();
 			if (fork_result == -1)
 				return (-1);
@@ -148,14 +147,25 @@ char *findpath(char *cmd, char *path)
 {
 	char **patharray;
 	int i = 0;
+	char *str;
 
+	str = malloc(strlen(patharray[i] + 1 + strlen(cmd)));
+
+	if (str == NULL)
+	{
+		return (NULL);
+	}
+	
 	patharray = tokenize(path, ":/");
-
 	while (patharray[i])
 	{
-		if stat(file is okie dokie it returns 0 else it returns -1)
+		sprintf(str, "%s/%s", patharray[i], cmd);
+		printf(str);
+		if (stat(str) == 0)
+			return (str);
 		i++;
 	}
-	/*strcat(strcat())*/
-
+	free(str);
+	return (NULL);
 }
+
