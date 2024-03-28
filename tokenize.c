@@ -15,7 +15,7 @@ char **tokenize(char *str, char *d)
 	char *part = NULL;
 	char **result;
 	int i, j, k;
-	
+
 	i = j = k = 0;
 
 	while (*str)

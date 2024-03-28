@@ -32,7 +32,7 @@ int main(int argc, char **argv, char **env)
 			{
 				free(buffer);
 				if (status == -1)
-					exit (2);
+					exit(2);
 				return (status);
 			}
 			tokens = tokenize(buffer, " \n");
