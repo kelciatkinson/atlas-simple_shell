@@ -107,6 +107,7 @@ char **tokenize(char *str, char *d)
 	{
 		result[j++] = strdup(part);
 		part = strtok(NULL, d);
+		printf("%s\n", part);
 	}
 	result[j] = NULL;
 
@@ -162,15 +163,17 @@ char *findpath(char *cmd, char **env)
 	{
 		return (NULL);
 	}
-
-	str = malloc(strlen(patharray[i] + 1 + strlen(cmd)));
+	printf("Something find path L:165\n");
+	patharray = tokenize(get_env("PATH", env), ":/");
+	printf("it made it past patharry this is line 167\n");
+	str = malloc(strlen(patharray[i]) + 1 + strlen(cmd));
 
 	if (str == NULL)
 	{
 		return (NULL);
 	}
+	printf("this made it to line 172\n");
 
-	patharray = tokenize(get_env("PATH", env), ":/");
 
 	while (patharray[i])
 	{
