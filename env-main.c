@@ -15,13 +15,9 @@ void nothing(void);
 int main(int argc, char **argv, char **env)
 {
 	char *buffer;
-
 	size_t buffersize = 6235;
-	int fork_result, i = 0;
-
+	int fork_result, i = 0, status = 0;
 	char **tokens = NULL;
-
-	int status = 0;
 
 	argc = argc;
 	buffer = malloc(sizeof(char) * buffersize);
@@ -40,22 +36,24 @@ int main(int argc, char **argv, char **env)
 				return (status);
 			}
 
-
 			fork_result = fork();
 			if (fork_result == -1)
 				return (-1);
+
 			if (fork_result == 0)
 			{
 				tokens = tokenize(buffer, " \n");
 				if (execve(tokens[i], tokens, env) == -1)
+				{
 					fprintf(stderr, "%s: No such file or directory\n", argv[0]);
+					free(tokens);
+				}
+				free(buffer);
 				return (0);
 			}
-
 			wait(&status);
 		}
 	}
-
 	free(buffer);
 	return (0);
 }
@@ -75,23 +73,17 @@ char **tokenize(char *str, char *d)
 	char *part = NULL;
 
 	char **result;
+	int i, j;
 
-	int i = 0;
-
-	int j = 0;
-
-	int k = 0;
+	i = j = 0;
 
 	while (*str)
 	{
 		if (*str == d[0])
 			i++;
 		str++;
-		k++;
 	}
 	i++;
-
-	str -= k;
 
 	result = malloc(sizeof(char *) * (++i));
 	if (result == NULL)
@@ -144,18 +136,43 @@ int _isspace(char *str)
 	return (1);
 }
 
-char *findpath(char *cmd, char *path)
-{
-	char **patharray;
-	int i = 0;
+/**
+ * findpath- check a cmd and see if its in any of the folders in a path 
+ *
+ * @cmd:     the command to look for
+ * @env:     the env with a PATH= that has the path to search
+ *
+ * Return:   a stirng with the correct folder and command or NULL if not found
+ *
+ */
 
-	patharray = tokenize(path, ":/");
+char *findpath(char *cmd, char **env)
+{
+	char **patharray = NULL;
+	int i = 0;
+	char *str;
+	struct stat *buff;
+
+	buff = malloc(sizeof(struct stat));
+	if (buff == NULL)
+		return (NULL);
+
+	patharray = tokenize(get_env("PATH", env), ":");
+	str = malloc(strlen(patharray[i]) + 1 + strlen(cmd));
+	if (str == NULL)
+		return (NULL);
 
 	while (patharray[i])
 	{
-		if stat(file is okie dokie it returns 0 else it returns -1)
+		sprintf(str, "%s/%s", patharray[i], cmd);
+		if (stat(str, buff) == 0)
+		{
+			free_double_pointer(patharray);
+			return (str);
+		}
 		i++;
 	}
-	/*strcat(strcat())*/
-
+	free_double_pointer(patharray);
+	free(str);
+	return (NULL);
 }
