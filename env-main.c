@@ -151,9 +151,17 @@ int _isspace(char *str)
 
 char *findpath(char *cmd, char **env)
 {
-	char **patharray;
+	char **patharray = NULL;
 	int i = 0;
 	char *str;
+	struct stat *buff;
+
+	buff = malloc(sizeof(struct stat));
+
+	if (buff == NULL)
+	{
+		return (NULL);
+	}
 
 	str = malloc(strlen(patharray[i] + 1 + strlen(cmd)));
 
@@ -162,16 +170,13 @@ char *findpath(char *cmd, char **env)
 		return (NULL);
 	}
 
-
-
-
 	patharray = tokenize(get_env("PATH", env), ":/");
 
 	while (patharray[i])
 	{
 		sprintf(str, "%s/%s", patharray[i], cmd);
 		printf("%s\n", str);
-		if (stat(str) == 0)
+		if (stat(str, buff) == 0)
 			return (str);
 		i++;
 	}
