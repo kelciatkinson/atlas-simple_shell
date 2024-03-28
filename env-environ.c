@@ -1,8 +1,7 @@
 #include "shell.h"
 
-extern char **env;
 
-char **get_env(const char *key_value)
+char *get_env(const char *key_value, char**env)
 {
   size_t len = 0;
   int i = 0;

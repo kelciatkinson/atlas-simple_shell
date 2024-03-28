@@ -14,10 +14,10 @@ void nothing(void);
 
 int main(int argc, char **argv, char **env)
 {
-	char *buffer;
+	char *buffer, *found;
 
 	size_t buffersize = 6235;
-	int fork_result, i = 0;
+	int fork_result;
 
 	char **tokens = NULL;
 
@@ -40,18 +40,24 @@ int main(int argc, char **argv, char **env)
 				return (status);
 			}
 
-			fork_result = fork();
-			if (fork_result == -1)
-				return (-1);
-			if (fork_result == 0)
-			{
-				tokens = tokenize(buffer, " \n");
-				if (execve(tokens[i], tokens, env) == -1)
-					fprintf(stderr, "%s: No such file or directory\n", argv[0]);
-				return (0);
-			}
+			tokens = tokenize(buffer, " \n");
 
-			wait(&status);
+			found = findpath(tokens[0], env);
+			if (found == NULL)
+				fprintf(stderr, "%s: No such file or directory\n", argv[0]);
+			else
+			{
+				fork_result = fork();
+				if (fork_result == -1)
+					return (-1);
+				if (fork_result == 0)
+				{
+					if (execve(found, tokens, env) == -1)
+						fprintf(stderr, "%s: No such file or directory\n", argv[0]);
+					return (0);
+				}
+				wait(&status);
+			}
 		}
 	}
 
@@ -143,7 +149,7 @@ int _isspace(char *str)
 	return (1);
 }
 
-char *findpath(char *cmd, char *path)
+char *findpath(char *cmd, char **env)
 {
 	char **patharray;
 	int i = 0;
@@ -155,12 +161,16 @@ char *findpath(char *cmd, char *path)
 	{
 		return (NULL);
 	}
-	
-	patharray = tokenize(path, ":/");
+
+
+
+
+	patharray = tokenize(get_env("PATH", env), ":/");
+
 	while (patharray[i])
 	{
 		sprintf(str, "%s/%s", patharray[i], cmd);
-		printf(str);
+		printf("%s\n", str);
 		if (stat(str) == 0)
 			return (str);
 		i++;
@@ -168,4 +178,3 @@ char *findpath(char *cmd, char *path)
 	free(str);
 	return (NULL);
 }
-
