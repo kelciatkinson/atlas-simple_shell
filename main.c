@@ -1,29 +1,66 @@
 #include "shell.h"
+void nothing(void);
 
 /**
- * _main- here is a description
- *
- * Return: here is a return value
- */
+* main - main entry point for shell
+*
+* @argc: the count of arguments
+* @argv: the arguments
+* @env:  the environment things
+*
+* Return: 0 success -1 error
+*
+*/
 
-int _main(void)
+int main(int argc, char **argv, char **env)
 {
-	char *buffer;
-	size_t buffsize = 4095;
+	char *buffer, *found;
+	size_t buffersize = 6235;
+	int fork_result, status = 0;
+	char **tokens = NULL;
 
-	/* allocating memory */
-	buffer = (char *)malloc(sizeof(char) * buffsize);
+	argc = argc;
+	buffer = malloc(sizeof(char) * buffersize);
 	if (buffer == NULL)
 		return (-1);
 
-	/* continuous loop to get input from user */
-	while (1)
+	while (prompt(buffer, &buffersize) != -1)
 	{
-		printf("$ ");
-		getline(&buffer, &buffsize, stdin);
-		if (strncmp(buffer, "exit", 4) == 0)
-			break;
-		printf("%s", buffer);
+		if (_isspace(buffer) != 1)
+		{
+			if (strncmp(buffer, "exit", 4) == 0)
+			{
+				free(buffer);
+				if (status == -1)
+					exit (2);
+				return (status);
+			}
+			tokens = tokenize(buffer, " \n");
+			found = findpath(tokens[0], env);
+			if (found == NULL)
+			{
+				free(found);
+				free(tokens);
+				fprintf(stderr, "%s: No such file or directory\n", argv[0]);
+			}
+			else
+			{
+				fork_result = fork();
+				if (fork_result == -1)
+					return (-1);
+				if (fork_result == 0)
+				{
+					if (execve(found, tokens, env) == -1)
+					{
+						free(found);
+						free(tokens);
+						fprintf(stderr, "%s: No such file or directory\n", argv[0]);
+					}
+					return (0);
+				}
+				wait(&status);
+			}
+		}
 	}
 	free(buffer);
 	return (0);
