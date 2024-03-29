@@ -18,8 +18,10 @@ int free_double_pointer(char **a)
 	while (a[i])
 	{
 		free(a[i]);
+		a[i] = NULL;
 		i++;
 	}
 	free(a);
+	a = NULL;
 	return (1);
 }

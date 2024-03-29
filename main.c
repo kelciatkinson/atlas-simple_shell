@@ -32,6 +32,7 @@ int main(int argc, char **argv, char **env)
 			if (strncmp(buffer, "exit", 4) == 0)
 			{
 				free(buffer);
+				buffer = NULL;
 				if (status == -1)
 					exit(2);
 				return (status);
@@ -53,6 +54,7 @@ int main(int argc, char **argv, char **env)
 					return (0);
 				}
 				free(found);
+				found = NULL;
 				wait(&status);
 			}
 			free_double_pointer(tokens);
