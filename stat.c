@@ -4,12 +4,15 @@
 #include <unistd.h>
 
 /**
-* __main - stat example
-* @ac: arg count
-* @av: argv pointer to an array of pointers to strings
-* Return: Always 0.
-*/
-int __main(int ac, char **av)
+ * stat- stat example
+ * 
+ * @ac: arg count
+ * @av: argv pointer to an array of pointers to strings
+ * 
+ * Return: Always 0.
+ *
+ */
+int stat(int ac, char **av)
 {
 	unsigned int i;
 

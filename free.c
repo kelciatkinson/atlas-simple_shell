@@ -6,6 +6,7 @@
  * @a:                  the double pointer to free
  *
  * Return:              0 or 1
+ *
  */
 
 int free_double_pointer(char **a)

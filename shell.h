@@ -10,9 +10,12 @@
 #include <string.h>
 #include <stddef.h>
 
- /** prototypes */
+/** 
+ * prototypes
+ */
 char *get_env(const char *key_value, char **env);
-int mainmain(void);
+int wait(void);
+int stat(int ac, char **av);
 int main(int argc, char **argv, char **env);
 char **tokenize(char *, char *);
 ssize_t prompt(char **, size_t *);

@@ -4,11 +4,12 @@
 #include <sys/wait.h>
 
 /**
-* ___main - fork & wait example
-*
-* Return: Always 0.
-*/
-int ___main(void)
+ * wait- fork & wait example
+ *
+ * Return: Always 0.
+ *
+ */
+int wait(void)
 {
 	pid_t child_pid;
 	int status;

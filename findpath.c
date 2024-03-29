@@ -9,6 +9,7 @@
  *
  * Return:   char pointer to the executable including any path info or NULL if
  *           it wasn't found anywhere
+ *
  */
 
 char *findpath(char *cmd, char **env)

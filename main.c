@@ -2,15 +2,15 @@
 void nothing(void);
 
 /**
-* main - main entry point for shell
-*
-* @argc: the count of arguments
-* @argv: the arguments
-* @env:  the environment things
-*
-* Return: 0 success -1 error
-*
-*/
+ * main- main entry point for shell
+ *
+ * @argc: the count of arguments
+ * @argv: the arguments
+ * @env:  the environment things
+ *
+ * Return: 0 success -1 error
+ *
+ */
 
 int main(int argc, char **argv, char **env)
 {
