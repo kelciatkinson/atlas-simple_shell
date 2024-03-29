@@ -14,14 +14,12 @@ void nothing(void);
 
 int main(int argc, char **argv, char **env)
 {
-	char *buffer, *found, *clear;
+	char *buffer, *found;
 	size_t buffersize = 6235;
 	int fork_result, status = 0;
 	char **tokens = NULL;
-	char c[] = "/bin/clear";
 
 	argc = argc;
-	clear = c;
 	buffer = malloc(sizeof(char) * buffersize);
 	if (buffer == NULL)
 		return (-1);
