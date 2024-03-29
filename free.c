@@ -21,7 +21,8 @@ int free_double_pointer(char **a)
 		a[i] = NULL;
 		i++;
 	}
-	free(a);
+	if (a)
+		free(a);
 	a = NULL;
 	return (1);
 }
