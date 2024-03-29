@@ -15,7 +15,7 @@
  */
 char *get_env(const char *key_value, char **env);
 int _wait(void);
-int stat(int ac, char **av);
+int _stat(int ac, char **av);
 int main(int argc, char **argv, char **env);
 char **tokenize(char *, char *);
 ssize_t prompt(char **, size_t *);

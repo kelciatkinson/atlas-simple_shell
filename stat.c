@@ -12,7 +12,7 @@
  * Return: Always 0.
  *
  */
-int stat(int ac, char **av)
+int _stat(int ac, char **av)
 {
 	unsigned int i;
 
