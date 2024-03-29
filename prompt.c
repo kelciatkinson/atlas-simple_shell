@@ -10,9 +10,9 @@
 * Return:      the number of bytes read from getline
 */
 
-ssize_t prompt(char *buffer, size_t *buffersize)
+ssize_t prompt(char **buffer, size_t *buffersize)
 {
 	if (isatty(STDIN_FILENO))
 		printf("#cisfun$ ");
-	return (getline(&buffer, buffersize, stdin));
+	return (getline(buffer, buffersize, stdin));
 }
