@@ -57,7 +57,7 @@ int main(int argc, char **argv, char **env)
 				found = NULL;
 				wait(&status);
 			}
-			free_double_pointer(tokens);
+			//free_double_pointer(tokens);
 		}
 	}
 	free(buffer);
