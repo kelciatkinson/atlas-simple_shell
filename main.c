@@ -39,11 +39,7 @@ int main(int argc, char **argv, char **env)
 			tokens = tokenize(buffer, " \n");
 			found = findpath(tokens[0], env);
 			if (found == NULL)
-			{
-				free(found);
-				free_double_pointer(tokens);
 				fprintf(stderr, "%s: No such file or directory\n", argv[0]);
-			}
 			else
 			{
 				fork_result = fork();
@@ -52,17 +48,13 @@ int main(int argc, char **argv, char **env)
 				if (fork_result == 0)
 				{
 					if (execve(found, tokens, env) == -1)
-					{
-						free(found);
-						free_double_pointer(tokens);
 						fprintf(stderr, "%s: No such file or directory\n", argv[0]);
-					}
 					return (0);
 				}
-				free(found);
-				free_double_pointer(tokens);
 				wait(&status);
 			}
+			free(found);
+			free_double_pointer(tokens);
 		}
 	}
 	free(buffer);
