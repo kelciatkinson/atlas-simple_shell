@@ -61,5 +61,6 @@ int main(int argc, char **argv, char **env)
 		}
 	}
 	free(buffer);
+	execve("/bin/clear", "/bin/clear", env);
 	return (0);
 }
