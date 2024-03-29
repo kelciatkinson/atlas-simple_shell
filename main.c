@@ -41,7 +41,7 @@ int main(int argc, char **argv, char **env)
 			if (found == NULL)
 			{
 				free(found);
-				free(tokens);
+				free_double_pointer(tokens);
 				fprintf(stderr, "%s: No such file or directory\n", argv[0]);
 			}
 			else
@@ -54,7 +54,7 @@ int main(int argc, char **argv, char **env)
 					if (execve(found, tokens, env) == -1)
 					{
 						free(found);
-						free(tokens);
+						free_double_pointer(tokens);
 						fprintf(stderr, "%s: No such file or directory\n", argv[0]);
 					}
 					return (0);
