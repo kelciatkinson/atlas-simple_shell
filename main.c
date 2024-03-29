@@ -48,12 +48,13 @@ int main(int argc, char **argv, char **env)
 				if (fork_result == 0)
 				{
 					if (execve(found, tokens, env) == -1)
-						fprintf(stderr, "%s: No such file or directory\n", argv[0]);
+						fprintf(stderr, "%s: No such file or directory\n", 
+						argv[0]);
 					return (0);
 				}
+				free(found);
 				wait(&status);
 			}
-			free(found);
 			free_double_pointer(tokens);
 		}
 	}
