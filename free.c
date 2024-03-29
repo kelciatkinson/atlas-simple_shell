@@ -20,6 +20,7 @@ int free_double_pointer(char **a)
 		free(a[i]);
 		i++;
 	}
+	free(a[i]);
 	free(a);
 	return (1);
 }

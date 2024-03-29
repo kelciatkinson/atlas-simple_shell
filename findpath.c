@@ -19,14 +19,12 @@ char *findpath(char *cmd, char **env)
 	struct stat *buff;
 
 	buff = malloc(sizeof(struct stat));
-	printf("malloc findpath buff for struct stat\n");
 	if (buff == NULL)
 		return (NULL);
 
 	if (stat(cmd, buff) == 0)
 	{
 		free(buff);
-		printf("free findpath buff for struct stat\n");
 		return (cmd);
 	}
 
@@ -34,32 +32,24 @@ char *findpath(char *cmd, char **env)
 
 	while (patharray[i])
 	{
-		str = malloc(strlen(patharray[i]) + 1 + strlen(cmd));
-		printf("malloc findpath str for patharray[%d]", i);
-		printf("at %s plus one plus strlen(cmd)", patharray[i]);
-		printf("is %lu\n", strlen(cmd));
+		str = malloc(strlen(patharray[i]) + 2 + strlen(cmd));
 		if (str == NULL)
 		{
 			free(buff);
-			printf("free findpath buff for struct stat\n");
 			return (NULL);
 		}
 		sprintf(str, "%s/%s", patharray[i], cmd);
 		if (stat(str, buff) == 0)
 		{
 			free(buff);
-			printf("free findpath buff for struct stat\n");
 			free_double_pointer(patharray);
 			return (str);
 		}
 		i++;
 		free(str);
-		printf("free findpath str end of loop\n");
 	}
 	free(buff);
-	printf("free findpath buff for struct stat\n");
 	free_double_pointer(patharray);
 	free(str);
-	printf("free findpath str\n");
 	return (NULL);
 }
