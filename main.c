@@ -63,6 +63,5 @@ int main(int argc, char **argv, char **env)
 		}
 	}
 	free(buffer);
-	execve(clear, &clear, env);
 	return (0);
 }
