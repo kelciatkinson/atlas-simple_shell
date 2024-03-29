@@ -9,7 +9,7 @@
  * Return: Always 0.
  *
  */
-int wait(void)
+int _main(void)
 {
 	pid_t child_pid;
 	int status;

@@ -14,7 +14,7 @@
  * prototypes
  */
 char *get_env(const char *key_value, char **env);
-int wait(void);
+int _wait(void);
 int stat(int ac, char **av);
 int main(int argc, char **argv, char **env);
 char **tokenize(char *, char *);
