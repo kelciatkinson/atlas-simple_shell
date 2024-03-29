@@ -17,9 +17,11 @@ int free_double_pointer(char **a)
 
 	while (a[i])
 	{
+		printf("freeing i = %d\n", i);
 		free(a[i]);
 		i++;
 	}
+	printf("freeing a\n");
 	free(a);
 	return (1);
 }
