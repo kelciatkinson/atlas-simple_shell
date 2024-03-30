@@ -50,7 +50,10 @@ int main(int argc, char **argv, char **env)
 			tokens = tokenize(buffer, " \n");
 			found = findpath(tokens[0], env);
 			if (found == NULL)
+			{
 				fprintf(stderr, "%s: 1: %s: not found\n", argv[0], tokens[0]);
+				status = EXIT_COMMAND_NOT_FOUND;
+			}
 			else
 			{
 				fork_result = fork();

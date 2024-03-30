@@ -1,5 +1,5 @@
-#ifndef SHELL
-#define SHELL
+#ifndef _SHELL_H_
+#define _SHELL_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,5 +23,14 @@ int _isspace(char *);
 char *findpath(char *, char **);
 int free_double_pointer(char **);
 char *_strdup(char *);
+
+/**
+ * MACROS
+ */
+#define EXIT_SUCCESS 0
+#define EXIT_GENERAL_ERROR 1
+#define EXIT_MISUSE_OF_SHELL_BUILTINS 2
+#define EXIT_COMMAND_INVOKED_CANNOT_EXECUTE 126
+#define EXIT_COMMAND_NOT_FOUND 127
 
 #endif
