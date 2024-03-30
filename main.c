@@ -71,5 +71,5 @@ int main(int argc, char **argv, char **env)
 		}
 	}
 	free(buffer);
-	return (0);
+	return (status);
 }
