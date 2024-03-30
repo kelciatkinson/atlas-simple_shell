@@ -34,12 +34,12 @@ char **tokenize(char *str, char *d)
 	if (result == NULL)
 		return (NULL);
 
-	copy = strdup(str);
+	copy = _strdup(str);
 	part = strtok(copy, d);
 
 	while (part)
 	{
-		result[j++] = strdup(part);
+		result[j++] = _strdup(part);
 		part = strtok(NULL, d);
 	}
 	result[j] = NULL;

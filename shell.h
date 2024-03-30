@@ -22,5 +22,6 @@ ssize_t prompt(char **, size_t *);
 int _isspace(char *);
 char *findpath(char *, char **);
 int free_double_pointer(char **);
+char *_strdup(char *);
 
 #endif
