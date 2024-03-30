@@ -13,14 +13,14 @@
 /** 
  * prototypes
  */
-char *get_env(const char *key_value, char **env);
+char *get_env(const char *, char **);
 int _wait(void);
-int _stat(int ac, char **av);
-int main(int argc, char **argv, char **env);
+int _stat(int, char **);
+int main(int, char **, char **);
 char **tokenize(char *, char *);
 ssize_t prompt(char **, size_t *);
-int _isspace(char *str);
-char *findpath(char *cmd, char **env);
-int free_double_pointer(char **a);
+int _isspace(char *);
+char *findpath(char *, char **);
+int free_double_pointer(char **);
 
 #endif

@@ -1,4 +1,14 @@
 #include "shell.h"
+
+#ifdef _VSCODE_
+#include "findpath.c"
+#include "free.c"
+#include "get_env.c"
+#include "tokenize.c"
+#include "prompt.c"
+#include "_isspace.c"
+#endif
+
 void nothing(void);
 
 /**

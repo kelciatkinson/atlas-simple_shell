@@ -26,7 +26,7 @@ char *findpath(char *cmd, char **env)
 	if (stat(cmd, buff) == 0)
 	{
 		free(buff);
-		return (cmd);
+		return (strdup(cmd));
 	}
 
 	patharray = tokenize(get_env("PATH", env), ":");
