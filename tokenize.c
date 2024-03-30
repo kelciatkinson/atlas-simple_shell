@@ -15,26 +15,26 @@ char **tokenize(char *str, char *d)
 	char *part = NULL;
 	char *copy = NULL;
 	char **result;
-	int i, j, k;
+	int i = 0, j = 0;
 
-	i = j = k = 0;
+	if ((!str) && (strcmp(str, "") != 0))
+		return (NULL);
 
-	while (*str)
+	copy = _strdup(str);
+	while (*copy)
 	{
-		if (*str == d[0])
+		if (*copy == d[0])
 			i++;
-		str++;
-		k++;
+		copy++;
 	}
 	i++;
-
-	str -= k;
+	free(copy);
+	copy = _strdup(str);
 
 	result = malloc(sizeof(char *) * (++i));
 	if (result == NULL)
 		return (NULL);
 
-	copy = _strdup(str);
 	part = strtok(copy, d);
 
 	while (part)
