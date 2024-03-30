@@ -50,7 +50,7 @@ int main(int argc, char **argv, char **env)
 			tokens = tokenize(buffer, " \n");
 			found = findpath(tokens[0], env);
 			if (found == NULL)
-				fprintf(stderr, "%s: No such file or directory\n", argv[0]);
+				fprintf(stderr, "%s: 1: %s: not found", argv[0], tokens[0]);
 			else
 			{
 				fork_result = fork();
