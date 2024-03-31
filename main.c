@@ -63,6 +63,8 @@ int main(int argc, char **argv, char **env)
 				free(found);
 				found = NULL;
 				wait(&status);
+				printf("the status is %d and the waitstatus is %d", status, WEXITSTATUS(status));
+
 			}
 			free_double_pointer(tokens);
 		}
