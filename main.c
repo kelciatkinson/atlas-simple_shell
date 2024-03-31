@@ -63,6 +63,8 @@ int main(int argc, char **argv, char **env)
 				free(found);
 				found = NULL;
 				wait(&status);
+				if (status != EXIT_SUCCESS)
+					exit(status);
 				/* printf("wait status is %d", status); */
 			}
 			free_double_pointer(tokens);

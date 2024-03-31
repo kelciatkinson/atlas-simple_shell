@@ -29,27 +29,34 @@ char *findpath(char *cmd, char **env)
 		return (_strdup(cmd));
 	}
 
-	free(buff);
 	patharray = tokenize(get_env("PATH", env), ":");
 
 	if (patharray == NULL)
-		return (NULL);
+	{
+			free(buff);
+			return (NULL);
+	}
 
 	while (patharray[i])
 	{
 		path_and_command = malloc(strlen(patharray[i]) + 2 + strlen(cmd));
 		if (path_and_command == NULL)
+		{
+			free(buff);
 			return (NULL);
+		}
 
 		sprintf(path_and_command, "%s/%s", patharray[i], cmd);
-		if (access(path_and_command, X_OK))
+		if (stat(str, buff) == 0)
 		{
+			free(buff);
 			free_double_pointer(patharray);
 			return (path_and_command);
 		}
 		i++;
 		free(path_and_command);
 	}
+	free(buff);
 	free_double_pointer(patharray);
 	
 	return (NULL);
