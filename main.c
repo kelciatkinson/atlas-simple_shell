@@ -34,6 +34,7 @@ int main(int argc, char **argv, char **env)
 			{
 				free(buffer);
 				buffer = NULL;
+				printf("exiting\n")
 				return (status);
 			}
 			tokens = tokenize(buffer, " \n");
