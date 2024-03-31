@@ -56,16 +56,14 @@ int main(int argc, char **argv, char **env)
 					{
 						fprintf(stderr, "%s: No such file or directory\n",
 						argv[0]);
-						exit(EXIT_MISUSE_OF_SHELL_BUILTINS);
+						exit(EXIT_NO_FILE_OR_DIRECTORY);
 					}
 					exit (status);
 				}
 				free(found);
 				found = NULL;
 				wait(&status);
-				if (status != EXIT_SUCCESS)
-					exit(status);
-				/* printf("wait status is %d", status); */
+				printf("wait status is %d\n", status);
 			}
 			free_double_pointer(tokens);
 		}
