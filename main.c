@@ -30,7 +30,6 @@ int main(int argc, char **argv, char **env)
 	int fork_result, status = 0;
 	char **tokens = NULL;
 
-	env[1]="PATH=";
 	argc = argc;
 	buffer = malloc(sizeof(char) * buffersize);
 	if (buffer == NULL)
