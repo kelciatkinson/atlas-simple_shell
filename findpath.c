@@ -17,10 +17,19 @@ char *findpath(char *cmd, char **env)
 	char **patharray = NULL;
 	int i = 0;
 	char *path_and_command;
+	struct stat *buff;
 
-	if (access(cmd, X_OK))
+	buff = malloc(sizeof(struct stat));
+	if (buff == NULL)
+		return (NULL);
+
+	if (stat(cmd, buff) == 0)
+	{
+		free(buff);
 		return (_strdup(cmd));
+	}
 
+	free(buff);
 	patharray = tokenize(get_env("PATH", env), ":");
 
 	if (patharray == NULL)
