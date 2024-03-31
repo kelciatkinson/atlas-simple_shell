@@ -31,6 +31,9 @@ char *findpath(char *cmd, char **env)
 
 	patharray = tokenize(get_env("PATH", env), ":");
 
+	if (patharray == NULL)
+		return (NULL);
+
 	while (patharray[i])
 	{
 		str = malloc(strlen(patharray[i]) + 2 + strlen(cmd));
