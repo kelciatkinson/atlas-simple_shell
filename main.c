@@ -66,7 +66,7 @@ int main(int argc, char **argv, char **env)
 					{
 						fprintf(stderr, "%s: No such file or directory\n",
 						argv[0]);
-						status = EXIT_MISUSE_OF_SHELL_BUILTINS;
+						exit(EXIT_GENERAL_ERROR);
 					}
 					exit (status);
 				}
