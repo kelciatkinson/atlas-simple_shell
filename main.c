@@ -34,8 +34,7 @@ int main(int argc, char **argv, char **env)
 			{
 				free(buffer);
 				buffer = NULL;
-				printf("exiting\n");
-				return (status);
+				exit(2);
 			}
 			tokens = tokenize(buffer, " \n");
 			found = findpath(tokens[0], env);
