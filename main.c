@@ -1,5 +1,5 @@
 #include "shell.h"
-#define _VSCODE_
+#define _NOT_VSCODE_
 #ifdef _VSCODE_
 #include "findpath.c"
 #include "free_double_pointer.c"

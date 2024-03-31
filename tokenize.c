@@ -12,38 +12,36 @@
 
 char **tokenize(char *str, char *d)
 {
-	char *part = NULL;
-	char *copy = NULL;
+	char *part = NULL, *copy = NULL;
 	char **result;
-	int i = 0, j = 0;
+	int i = 0, j = 0, k = 0;
 
-	if ((!str) && (strcmp(str, "") != 0))
+	if (!str)
 		return (NULL);
-
-	copy = _strdup(str);
-	while (*copy)
+/* count the delimiters to count the tokens*/
+	for (j = 0; j < strlen(str); j++)
 	{
-		if (*copy == d[0])
+		if (str[j] == d[0])
 			i++;
-		copy++;
 	}
 	i++;
-	free(copy);
-	copy = _strdup(str);
 
+/* make room for pointers to tokens */
 	result = malloc(sizeof(char *) * (++i));
 	if (result == NULL)
 		return (NULL);
 
+/* init strtok with a duplicate of str */
+	copy = _strdup(str);
 	part = strtok(copy, d);
-
 	while (part)
 	{
-		result[j++] = _strdup(part);
+		result[k++] = _strdup(part);
 		part = strtok(NULL, d);
 	}
-	result[j] = NULL;
-
+/* mark the end of the array with a NULL */
+	result[k] = NULL;
 	free(copy);
+	
 	return (result);
 }
