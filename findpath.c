@@ -18,7 +18,7 @@ char *findpath(char *cmd, char **env)
 	int i = 0;
 	char *path_and_command;
 
-	if (access(cmd, XOK))
+	if (access(cmd, X_OK))
 		return (_strdup(cmd));
 
 	patharray = tokenize(get_env("PATH", env), ":");
