@@ -43,7 +43,7 @@ char *findpath(char *cmd, char **env)
 			return (NULL);
 		}
 		sprintf(str, "%s/%s", patharray[i], cmd);
-		if ((str, buff) == 0)
+		if (stat(str, buff) == 0)
 		{
 			free(buff);
 			free_double_pointer(patharray);
