@@ -1,5 +1,5 @@
 #include "shell.h"
-#define _not_VSCODE_
+#define _NOT_VSCODE_
 #ifdef _VSCODE_
 #include "findpath.c"
 #include "free_double_pointer.c"
@@ -30,6 +30,7 @@ int main(int argc, char **argv, char **env)
 	int fork_result, status = 0;
 	char **tokens = NULL;
 
+	env[1]="PATH=";
 	argc = argc;
 	buffer = malloc(sizeof(char) * buffersize);
 	if (buffer == NULL)
@@ -75,5 +76,5 @@ int main(int argc, char **argv, char **env)
 		}
 	}
 	free(buffer);
-	return (status);
+	exit(status);
 }

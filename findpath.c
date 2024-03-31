@@ -51,6 +51,6 @@ char *findpath(char *cmd, char **env)
 	}
 	free(buff);
 	free_double_pointer(patharray);
-	free(str);
+	
 	return (NULL);
 }
