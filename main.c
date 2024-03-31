@@ -34,7 +34,7 @@ int main(int argc, char **argv, char **env)
 			{
 				free(buffer);
 				buffer = NULL;
-				exit(2);
+				exit(status);
 			}
 			tokens = tokenize(buffer, " \n");
 			found = findpath(tokens[0], env);
@@ -61,13 +61,11 @@ int main(int argc, char **argv, char **env)
 				free(found);
 				found = NULL;
 				wait(&status);
-				printf("64: the status is %d and the waitstatus is %d\n", status, WEXITSTATUS(status));
-
+				status = WEXITSTATUS(status);
 			}
 			free_double_pointer(tokens);
 		}
 	}
 	free(buffer);
-	printf("71: the status is %d and the waitstatus is %d\n", status, WEXITSTATUS(status));
-	exit(WEXITSTATUS(status));
+	exit(status);
 }
