@@ -28,11 +28,15 @@ int _printenv(char **env);
 /**
  * MACROS
  */
+#define EXIT_FORK_ERROR -1
 #define EXIT_SUCCESS 0
 #define EXIT_GENERAL_ERROR 1
 #define EXIT_NO_FILE_OR_DIRECTORY 2
 #define EXIT_MISUSE_OF_SHELL_BUILTINS 2
 #define EXIT_COMMAND_INVOKED_CANNOT_EXECUTE 126
 #define EXIT_COMMAND_NOT_FOUND 127
+
+#define ERR_NO_FILE_OR_DIRECTORY "%s: No such file or directory\n"
+#define ERR_NOT_FOUND "%s: 1: %s: not found\n"
 
 #endif
