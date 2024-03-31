@@ -23,7 +23,7 @@ char *findpath(char *cmd, char **env)
 	if (buff == NULL)
 		return (NULL);
 
-	if (stat(cmd, buff) == 0)
+	if ((stat(cmd, buff) == 0) && (strchr(cmd, '/')))
 	{
 		free(buff);
 		return (_strdup(cmd));
