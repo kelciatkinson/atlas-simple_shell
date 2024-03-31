@@ -14,15 +14,17 @@ char **tokenize(char *str, char *d)
 {
 	char *part = NULL, *copy = NULL;
 	char **result;
-	int i = 0, j = 0, k = 0;
+	int i = 0, k = 0;
+	size_t j = 0;
 
 	if (!str)
 		return (NULL);
 /* count the delimiters to count the tokens*/
-	for (j = 0; j < strlen(str); j++)
+	while (j < strlen(str))
 	{
 		if (str[j] == d[0])
 			i++;
+		 j++;
 	}
 	i++;
 
@@ -42,6 +44,6 @@ char **tokenize(char *str, char *d)
 /* mark the end of the array with a NULL */
 	result[k] = NULL;
 	free(copy);
-	
+
 	return (result);
 }
