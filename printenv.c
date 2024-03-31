@@ -1,24 +1,21 @@
 #include "shell.h"
 
-extern char **environ;
-
 /**
- * _printenv- 
+ * _printenv- prints the current environment when called
  * 
- * @env:
+ * @env:      the environment
  * 
- * Return:
+ * Return:    always 0
  *
  */
 
-int _printenv(char **env)
+void _printenv(char **env)
 {
 	int i = 0;
 	
-	while (*env)
+	while (env[i])
 	{
-		printf("%s\n", environ[i]);
+		printf("%s\n", env[i]);
 		i++;
 	}
-	return (0);
 }

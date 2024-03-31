@@ -23,7 +23,7 @@ int _isspace(char *);
 char *findpath(char *, char **);
 int free_double_pointer(char **);
 char *_strdup(char *);
-int _printenv(char **env);
+void _printenv(char **);
 
 /**
  * MACROS
