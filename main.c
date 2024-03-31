@@ -1,14 +1,4 @@
 #include "shell.h"
-#define _not_VSCODE_
-#ifdef _VSCODE_
-#include "findpath.c"
-#include "free_double_pointer.c"
-#include "get_env.c"
-#include "tokenize.c"
-#include "prompt.c"
-#include "_strdup.c"
-#include "_isspace.c"
-#endif
 
 void nothing(void);
 
@@ -66,14 +56,14 @@ int main(int argc, char **argv, char **env)
 					{
 						fprintf(stderr, "%s: No such file or directory\n",
 						argv[0]);
-						exit(EXIT_GENERAL_ERROR);
+						exit(EXIT_MISUSE_OF_SHELL_BUILTINS);
 					}
 					exit (status);
 				}
 				free(found);
 				found = NULL;
-				if (wait(&status) == -1)
-					status = EXIT_MISUSE_OF_SHELL_BUILTINS;
+				wait(&status);
+				printf("wait status is %d", status);
 			}
 			free_double_pointer(tokens);
 		}
