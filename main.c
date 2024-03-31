@@ -72,7 +72,8 @@ int main(int argc, char **argv, char **env)
 				}
 				free(found);
 				found = NULL;
-				wait(&status);
+				if (wait(&status) == -1)
+					status = EXIT_MISUSE_OF_SHELL_BUILTINS;
 			}
 			free_double_pointer(tokens);
 		}
