@@ -16,18 +16,10 @@ char *findpath(char *cmd, char **env)
 {
 	char **patharray = NULL;
 	int i = 0;
-	char *str;
-	struct stat *buff;
+	char *path_and_command;
 
-	buff = malloc(sizeof(struct stat));
-	if (buff == NULL)
-		return (NULL);
-
-	if (stat(cmd, buff) == 0)
-	{
-		free(buff);
+	if (access(cmd, XOK))
 		return (_strdup(cmd));
-	}
 
 	patharray = tokenize(get_env("PATH", env), ":");
 
@@ -36,23 +28,19 @@ char *findpath(char *cmd, char **env)
 
 	while (patharray[i])
 	{
-		str = malloc(strlen(patharray[i]) + 2 + strlen(cmd));
-		if (str == NULL)
-		{
-			free(buff);
+		path_and_command = malloc(strlen(patharray[i]) + 2 + strlen(cmd));
+		if (path_and_command == NULL)
 			return (NULL);
-		}
-		sprintf(str, "%s/%s", patharray[i], cmd);
-		if (stat(str, buff) == 0)
+
+		sprintf(path_and_command, "%s/%s", patharray[i], cmd);
+		if (access(path_and_command, X_OK))
 		{
-			free(buff);
 			free_double_pointer(patharray);
-			return (str);
+			return (path_and_command);
 		}
 		i++;
-		free(str);
+		free(path_and_command);
 	}
-	free(buff);
 	free_double_pointer(patharray);
 	
 	return (NULL);
