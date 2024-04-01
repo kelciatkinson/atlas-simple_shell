@@ -32,6 +32,11 @@ int main(int argc, char **argv, char **env)
 		{
 			if (strncmp(buffer, "exit", 4) == 0)
 			{
+				if (buffer[4] != '\0')
+				{
+					if (atoi(buffer[4]))
+						exit(atoi(buffer[4]));
+				}
 				free(buffer);
 				buffer = NULL;
 				exit(status);
