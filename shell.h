@@ -24,6 +24,7 @@ char *findpath(char *, char **);
 int free_double_pointer(char **);
 char *_strdup(char *);
 void _printenv(char **);
+int _atoi(char *);
 
 /**
  * MACROS
