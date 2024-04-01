@@ -34,8 +34,8 @@ int main(int argc, char **argv, char **env)
 			{
 				if (buffer[4] != '\0')
 				{
-					if (atoi(buffer[4]))
-						exit(atoi(buffer[4]));
+					if (atoi(*buffer[4]))
+						exit(atoi(*buffer[4]));
 				}
 				free(buffer);
 				buffer = NULL;
