@@ -41,7 +41,7 @@ int main(int argc, char **argv, char **env)
 				free(buffer);
 				buffer = NULL;
 				_printenv(env);
-				exit(EXIT_SUCCESS);
+				continue;
 			}
 			tokens = tokenize(buffer, " \n");
 			found = findpath(tokens[0], env);
