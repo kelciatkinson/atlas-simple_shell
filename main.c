@@ -17,7 +17,7 @@ int main(int argc, char **argv, char **env)
 {
 	char *buffer, *found;
 	size_t buffersize = 6235;
-	int fork_result, status = 0;
+	int fork_result, status = 0, exit_val = 0;
 	char **tokens = NULL;
 
 	argc = argc;
@@ -34,9 +34,10 @@ int main(int argc, char **argv, char **env)
 			{
 				if (buffer[4] != '\0')
 				{
-					free(buffer);
 					buffer += 4;
-					exit(atoi(buffer));
+					exit_val = atoi(buffer);
+					free(buffer);
+					exit(exit_val);
 				}
 				exit(status);
 			}
