@@ -5,8 +5,6 @@
  * 
  * @env:      the environment
  * 
- * Return:    always 0
- *
  */
 
 void _printenv(char **env)
