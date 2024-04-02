@@ -21,17 +21,12 @@ the prompt again.
 - It handles errors.
 - It properly handles the "end of file" condition (`Ctrl+D`)
 
-## It does not:
-
-- use the `PATH`
-- implement built-ins
-- handle special characters : `"`, `'`, `` ` ``, `\`, `*`, `&`, `#`
-- move the cursor
-- handle commands with arguments
-
 ## Installation steps:
 
-This program requires no installation. Just execute the file.
+Use the following GCC command to compile the program:
+````
+gcc *.c -o shell
+````
 
 ## How to run Simple Shell in interactive mode:
 
