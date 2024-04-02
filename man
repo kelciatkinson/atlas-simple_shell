@@ -7,11 +7,11 @@
 **SHELL** \- Command line interface interpreter.
 
 .SH SYNOPSIS
-.B Shelly
+.B Shell
 .RB [ " options, " " command_string | file " " ..." ]
 
 .SH DESCRIPTION
-.B Shelly
+.B Shell
 .TP
 This program provides a simple shell environment that executes commands from a user via the standard input.
 
@@ -25,7 +25,7 @@ shell is the executable that the user is able to use in order to enter interacti
 .TP
 Once files are compiled, run:
 
-$ ./shelly
+$ ./shell
 .TP
 The following built commands are able to be used:
 
