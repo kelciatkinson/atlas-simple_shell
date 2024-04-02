@@ -27,7 +27,6 @@ int main(int argc, char **argv, char **env)
 
 	while (prompt(&buffer, &buffersize) != -1)
 	{
-		/*printf("buffer is [%s]", buffer);*/
 		if (_isspace(buffer) != 1)
 		{
 			if (strncmp(buffer, "exit", 4) == 0)
