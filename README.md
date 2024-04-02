@@ -56,8 +56,7 @@ echo "env" | ./shell
 
 ## Flowchart
 
-<img width="860" alt="Flowchart of Simple Shell" src="https://github.com/kelciatkinson/atlas-simple_shell/assets/106333133/8ddb2211-dacc-4c00-838c-393f3cc002d0">
-
+<img width="860" alt="Screenshot 2024-04-01 at 8 23 10 PM" src="https://github.com/kelciatkinson/atlas-simple_shell/assets/106333133/e4bc00fb-e83b-4693-9caf-e65da80874ce">
 
 ## Credits
 
