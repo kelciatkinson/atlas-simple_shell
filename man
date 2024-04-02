@@ -1,0 +1,60 @@
+.\" Manpage for Shell.
+.\" Contact jermitts@gmail.com to correct errors or typos.
+
+.TH SHELL 1 "March 2024" "Version 0.9" "LINUX"
+
+.SH NAME
+**SHELL** \- Command line interface interpreter.
+
+.SH SYNOPSIS
+.B Shelly
+.RB [ " options, " " command_string | file " " ..." ]
+
+.SH DESCRIPTION
+.B Shelly
+.TP
+This program provides a simple shell environment that executes commands from a user via the standard input.
+
+The shell is able to read lines as typed or from a piped input.
+
+
+
+.SH OPTIONS
+
+shell is the executable that the user is able to use in order to enter interactive mode.
+.TP
+Once files are compiled, run:
+
+$ ./shelly
+.TP
+The following built commands are able to be used:
+
+.B env -
+Print the current environment.
+
+.TP
+To exit the program:
+
+$ exit
+
+.SH FILES
+.TP
+.I /atlas-simple_shell/
+
+.SH BUILT-IN COMMANDS
+.TP
+exit: Exits the shell. 
+
+env: Prints the current environment.
+
+.SH BUGS
+None known.
+
+.SH AUTHOR
+Written by Kelci Atkinson and Jeremy Mitts.
+
+.SH VERSION
+.B Shell
+V1.0
+.SH COPYRIGHT
+This is free and unencumbered software released into the public domain.
